@@ -13,15 +13,19 @@ import Stats from './components/Stats';
 function App() {
   const [items, setItems] = useState([]);
 
-  function handelAddItem(item) {
+  function handleAddItem(item) {
     setItems((items) => [...items, item]);
+  }
+
+  function handleDeleteItem(id) {
+    setItems((items) => items.filter((item) => item.id !== id));
   }
 
   return (
     <div className="App">
       <Logo />
-      <Form onAddItems={handelAddItem} />
-      <PackingList items={items} />
+      <Form onAddItems={handleAddItem} />
+      <PackingList items={items} onDeleteItem={handleDeleteItem} />
       <Stats />
     </div>
   );
